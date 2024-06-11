@@ -1,2 +1,1 @@
-# deeplink_goatus
-deeplink_goatus
+sagin-mi.github.io
