@@ -1,12 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target" : { 
+      "namespace": "android_app", 
       "package_name": "com.yig.mi.goatus",
       "sha256_cert_fingerprints": [
-        49DCFD3070CD88A5BB2F00CA22347B35F422032226B17FBE0F6D28249B5D2F21
-      ]
+        "49:DC:FD:30:70:CD:88:A5:BB:2F:00:CA:22:34:7B:35:F4:22:03:22:26:B1:7F:BE:0F:6D:28:24:9B:5D:2F:21"
+      ] 
     }
   }
 ]
