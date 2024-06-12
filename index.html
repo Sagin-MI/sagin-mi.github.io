@@ -62,8 +62,16 @@
             // Check if the user is on an iOS device
             else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 window.location.href = "https://apps.apple.com/us/app/example-ios-app/id123456789";
+            }
+            // Check if the user is on a Windows device
+            else if (/windows/i.test(userAgent)) {
+                window.location.href = "https://www.microsoft.com/store/apps/9wzdncrfj3pt";
+            }
+            // Check if the user is on a Mac device
+            else if (/macintosh|mac os x/i.test(userAgent)) {
+                window.location.href = "https://apps.apple.com/us/app/example-mac-app/id123456789";
             } else {
-                alert("This feature is only available on iOS and Android devices.");
+                alert("This feature is only available on iOS, Android, Windows, and Mac devices.");
             }
         }
     </script>
