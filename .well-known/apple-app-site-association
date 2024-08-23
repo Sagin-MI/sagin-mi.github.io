@@ -4,7 +4,7 @@
     "details": [
       {
         "appIDs": [
-          "P5M6BNFGUB.com.yig.mi.goatus"
+          "P5M6BNFGUB.com.yig.mi.goatusdev101"
         ],
         "paths": [
           "*"
@@ -19,7 +19,7 @@
   },
   "webcredentials": {
     "apps": [
-      "P5M6BNFGUB.com.yig.mi.goatus"
+      "P5M6BNFGUB.com.yig.mi.goatusdev101"
     ]
   }
 }
