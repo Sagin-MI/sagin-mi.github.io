@@ -9,14 +9,6 @@
       {
         "appID": "YR96DNP362.com.yig.mi.goatusdev.101",
         "paths": [ "*" ]
-      },
-      {
-        "appIDs": "P5M6BNFGU8.com.yig.mi.goatusdev101",
-        "paths": ["*"],
-      },
-      {
-        "appID": "YR96DNP362.com.yig.mi.goatusdev101",
-        "paths": [ "*" ]
       }
     ]
   }
