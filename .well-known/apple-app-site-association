@@ -3,23 +3,9 @@
     "apps": [],
     "details": [
       {
-        "appIDs": [
-          "P5M6BNFGU8.com.yig.mi.goatusdev.101"
-        ],
-        "paths": [
-          "*"
-        ],
-        "components": [
-          {
-            "/": "/*"
-          }
-        ]
+        "appIDs": "P5M6BNFGU8.com.yig.mi.goatusdev.101",
+        "paths": ["*"],
       }
-    ]
-  },
-  "webcredentials": {
-    "apps": [
-      "P5M6BNFGU8.com.yig.mi.goatusdev.101"
     ]
   }
 }
