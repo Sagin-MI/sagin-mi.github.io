@@ -42,6 +42,7 @@
       console.log("Handling redirect...");
       if (isIOS()) {
         console.log("Redirecting to iOS intent URL:", iosIntentUrl);
+        redirectToUrlIOS("https://quotezark.dlofistudio.com/");
         // window.location.href = "https://quotezark.dlofistudio.com/";
         // window.location.href = iosIntentUrl;
         // setTimeout(() => {
@@ -55,6 +56,13 @@
         console.log("Redirecting to web fallback URL currently not redirect for testing :", webFallbackUrl);
         // window.location.href = webFallbackUrl;
       }
+    }
+
+    function redirectToUrlIOS(url) {
+      const anchor = document.createElement("a");
+      anchor.href = url;
+      anchor.target = "_self"; // Ensures it opens in the current tab
+      anchor.click();
     }
 
     // Automatically redirect when the page loads
