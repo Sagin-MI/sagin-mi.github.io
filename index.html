@@ -56,20 +56,6 @@
       }
     }
 
-    function openInApp() {
-      console.log("Open In App button clicked.");
-      if (isIOS()) {
-        console.log("Opening iOS app via URL:", iosIntentUrl);
-        window.location.href = iosIntentUrl;
-      } else if (isAndroid()) {
-        console.log("Opening Android app via intent URL:", androidIntentUrl);
-        window.location.href = androidIntentUrl;
-      } else {
-        console.log("Opening web fallback URL:", webFallbackUrl);
-        window.location.href = webFallbackUrl;
-      }
-    }
-
     // Automatically redirect when the page loads
     window.onload = () => {
       console.log("Page loaded. Initiating redirect...");
@@ -81,7 +67,7 @@
   <app-root>
     <router-outlet></router-outlet>
     <!-- Button to explicitly open the app -->
-    <a target="_blank" class="btn btn-dark" href="#" onclick="openInApp(); return false;">
+    <a target="_blank" class="btn btn-dark" href="#" onclick="handleRedirect(); return false;">
       Open In App
     </a>
   </app-root>
