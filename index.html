@@ -42,13 +42,11 @@
       console.log("Handling redirect...");
       if (isIOS()) {
         console.log("Redirecting to iOS intent URL:", iosIntentUrl);
-        redirectToUrlIOS("https://quotezark.dlofistudio.com/");
-        // window.location.href = "https://quotezark.dlofistudio.com/";
-        // window.location.href = iosIntentUrl;
-        // setTimeout(() => {
-        //   console.log("Fallback to App Store:", appStoreUrl);
-        //   window.location.href = appStoreUrl;
-        // }, 1500);
+        window.location.href = iosIntentUrl;
+        setTimeout(() => {
+          console.log("Fallback to App Store:", appStoreUrl);
+          redirectToUrlIOS(appStoreUrl);
+        }, 1500);
       } else if (isAndroid()) {
         console.log("Redirecting to Android intent URL:", androidIntentUrl);
         window.location.href = androidIntentUrl;
