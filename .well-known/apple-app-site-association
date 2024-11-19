@@ -4,7 +4,7 @@
     "details": [
       {
         "appIDs": [
-          "P5M6BNFGU8.com.yig.mi.goatusdev.101"
+          "P5M6BNFGU8.com.example.flutterdeeplink"
         ],
         "paths": [
           "*"
@@ -19,7 +19,7 @@
   },
   "webcredentials": {
     "apps": [
-      "P5M6BNFGU8.com.yig.mi.goatusdev.101"
+      "P5M6BNFGU8.com.example.flutterdeeplink"
     ]
   }
 }
