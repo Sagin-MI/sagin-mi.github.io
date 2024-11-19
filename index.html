@@ -1,63 +1,74 @@
-<!DOCTYPE html><html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Language" content="ja">
-    <meta name="google" content="notranslate">  
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <title>DeepLink Test</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles.css"><link rel="modulepreload" href="chunk-NQBSWKDV.js">
-    <script>
-      // Define the app and fallback URLs
-      // const fallbackUrl = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
-      const appStoreUrl = "https://apps.apple.com/app/6446269812";
-      const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
-      const intentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(appStoreUrl)};end`;
-      // Function to check if the user is on iOS
-      function isIOS() {
-          return /iPhone|iPad|iPod/i.test(navigator.userAgent);
-      }
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="ja">
+  <meta name="google" content="notranslate">  
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <title>DeepLink Test</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    // App Store and Play Store URLs
+    const appStoreUrl      = "https://apps.apple.com/app/6446269812";
+    const playStoreUrl     = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
+    const webFallbackUrl   = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
+    const androidIntentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
+    const iosIntentUrl     = "https://sagin-mi.github.io/#/post-detail?id=1";
 
-      // Function to check if the user is on Android
-      function isAndroid() {
-          return /Android/i.test(navigator.userAgent);
-      }
+    // Device type detection
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
 
-      // Function to handle the redirection logic
-      function openAppOrRedirect() {
-          // Timeout to fallback to the web page if the app doesn't open
-          setTimeout(function() {
-              if (isIOS()) {
-                  // Redirect to the App Store on iOS
-                  window.location.href = appStoreUrl;
-              } else if (isAndroid()) {
-                  // Redirect to the Play Store on Android
-                  // window.location.href = playStoreUrl;
-                  window.location.href = intentUrl;
-              } else {
-                  // Fallback to the web page for other devices or desktop
-                  // window.location.href = fallbackUrl;
-              }
-          }, 1500);
-      }
-      
-      function openInApp() {
-          // Attempt to open the app using the intent URL
-          window.location.href = intentUrl;
-      }
+    function isAndroid() {
+      return /Android/i.test(navigator.userAgent);
+    }
 
-      // Run the function when the page loads
-      window.onload = openAppOrRedirect;
-    </script>
-  </head>
-<body><!--nghm-->
-  <app-root _nghost-ng-c1281258137="" ng-version="17.2.3" ngh="1" ng-server-context="ssg">
-    <router-outlet _ngcontent-ng-c1281258137="">
-    </router-outlet>
-    <a _ngcontent-ng-c1094738126="" target="_blank" class="btn btn-dark" href="" onclick="openInApp(); return false;">
-      Open In App 123
+    function isDesktop() {
+      return !isIOS() && !isAndroid();
+    }
+
+    // Handle redirection based on the device type
+    function handleRedirect() {
+      if (isIOS()) {
+        // Attempt to open app using universal links; fallback to App Store
+        window.location.href = iosIntentUrl;
+        setTimeout(() => window.location.href = appStoreUrl, 1500);
+      } else if (isAndroid()) {
+        // Attempt to open app via intent; fallback to Play Store
+        window.location.href = androidIntentUrl;
+      } else {
+        // Desktop: Just open the web fallback URL
+        window.location.href = webFallbackUrl;
+      }
+    }
+
+    function openInApp() {
+      if (isIOS()) {
+        window.location.href = iosIntentUrl;
+      } else if (isAndroid()) {
+        window.location.href = androidIntentUrl;
+      } else {
+        window.location.href = webFallbackUrl;
+      }
+    }
+
+    // Automatically redirect when the page loads
+    window.onload = handleRedirect;
+  </script>
+</head>
+<body>
+  <app-root>
+    <router-outlet></router-outlet>
+    <!-- Button to explicitly open the app -->
+    <a target="_blank" class="btn btn-dark" href="#" onclick="openInApp(); return false;">
+      Open In App
     </a>
   </app-root>
-<script src="polyfills.js" type="module"></script><script src="main.js" type="module"></script>
+  <script src="polyfills.js" type="module"></script>
+  <script src="main.js" type="module"></script>
+</body>
+</html>
