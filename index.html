@@ -42,11 +42,10 @@
 
   <script>
     // Define the app and fallback URLs
-    const appLink = "stardomz://goatus/51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
     const fallbackUrl = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
     const appStoreUrl = "https://apps.apple.com/app/6446269812";
     const playStoreUrl = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
-    const intentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end`;
+    const intentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
     // Function to check if the user is on iOS
     function isIOS() {
         return /iPhone|iPad|iPod/i.test(navigator.userAgent);
@@ -70,12 +69,9 @@
                 window.location.href = intentUrl;
             } else {
                 // Fallback to the web page for other devices or desktop
-                // window.location.href = fallbackUrl;
+                window.location.href = fallbackUrl;
             }
         }, 1500);
-
-        // Attempt to open the app using a deep link
-        // window.location.href = appLink;
     }
     
     function openInApp() {
