@@ -17,6 +17,7 @@
     const webFallbackUrl   = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
     const androidIntentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
     const iosIntentUrl     = "https://sagin-mi.github.io/#/post-detail?id=1";
+    const iosIntentUrl2    = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(androidIntentUrl)};end`;
 
     // Device type detection
     function isIOS() {
@@ -41,8 +42,8 @@
     function handleRedirect() {
       console.log("Handling redirect...");
       if (isIOS()) {
-        console.log("Redirecting to iOS intent URL:", iosIntentUrl);
-        window.location.href = iosIntentUrl;
+        console.log("Redirecting to iOS intent URL:", iosIntentUrl2);
+        window.location.href = iosIntentUrl2;
         setTimeout(() => {
           console.log("Fallback to App Store:", appStoreUrl);
           window.location.href = appStoreUrl;
