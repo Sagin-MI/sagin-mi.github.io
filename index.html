@@ -63,6 +63,11 @@
       anchor.click();
     }
 
+    function redirectToWebDetailPage() {
+      console.log("Redirecting to Web Version", webFallbackUrl);
+      window.location.href = webFallbackUrl;
+    }
+
     // Automatically redirect when the page loads
     window.onload = () => {
       const button = document.getElementById("openAppButton");
@@ -86,6 +91,9 @@
     <!-- Add content for web view here -->
     <div id="webContent">
       <p>Welcome to the web version of the DeepLink Test page!</p>
+      <a id="openWebVersionButton" class="btn btn-dark" href="#" onclick="redirectToWebDetailPage(); return false;" style="display:none;">
+        Open in Web detail
+      </a>
     </div>
   </app-root>
   <script src="polyfills.js" type="module"></script>
