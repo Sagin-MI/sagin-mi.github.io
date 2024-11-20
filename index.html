@@ -29,7 +29,7 @@
     const appStoreUrl      = "https://apps.apple.com/app/6446269812";
     const playStoreUrl     = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
     const webFallbackUrl   = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
-    const androidIntentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutter_deeplink;S.browser_fallback_url=${encodeURIComponent(playStoreUrl)};end`;
+    const androidIntentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutterdeeplinkMi123;end`;
     const iosIntentUrl     = "https://sagin-mi.github.io/#/post-detail?id=1";
     
     // Device type detection
@@ -64,6 +64,10 @@
       } else if (isAndroid()) {
         console.log("Redirecting to Android intent URL:", androidIntentUrl);
         window.location.href = androidIntentUrl;
+        setTimeout(() => {
+          // Fallback to Play Store if app is not installed
+          window.location.href = playStoreUrl;
+        }, 1500);
       } else {
         console.log("Redirecting to web fallback URL currently not redirect for testing :", webFallbackUrl);
         // window.location.href = webFallbackUrl;
