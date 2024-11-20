@@ -11,7 +11,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="styles.css">
   <script>
-    // App Store and Play Store URLs
+    // App Store and Play Store URLs and intents
     const appStoreUrl      = "https://apps.apple.com/app/6446269812";
     const playStoreUrl     = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
     const webFallbackUrl   = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
@@ -65,6 +65,12 @@
 
     // Automatically redirect when the page loads
     window.onload = () => {
+      const button = document.getElementById("openAppButton");
+      if (isDesktop()) {
+        button.style.display = "none"; // Hide button on desktop
+      } else {
+        button.style.display = "block"; // Show button on mobile
+      }
       console.log("Page loaded. Initiating redirect...");
       handleRedirect();
     };
@@ -74,9 +80,13 @@
   <app-root>
     <router-outlet></router-outlet>
     <!-- Button to explicitly open the app -->
-    <a target="_blank" class="btn btn-dark" href="#" onclick="handleRedirect(); return false;">
+    <a id="openAppButton" class="btn btn-dark" href="#" onclick="handleRedirect(); return false;" style="display:none;">
       Open In App
     </a>
+    <!-- Add content for web view here -->
+    <div id="webContent">
+      <p>Welcome to the web version of the DeepLink Test page!</p>
+    </div>
   </app-root>
   <script src="polyfills.js" type="module"></script>
   <script src="main.js" type="module"></script>
