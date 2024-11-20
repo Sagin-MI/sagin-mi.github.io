@@ -54,25 +54,46 @@
     // Handle redirection based on the device type
     function handleRedirect() {
       console.log("Handling redirect...");
+    
+      let timeoutId;
+    
+      // Function to clear the timeout
+      function clearFallback() {
+        if (timeoutId) {
+          console.log("App opened successfully. Clearing fallback timeout.");
+          clearTimeout(timeoutId);
+        }
+      }
+    
+      // Listen for the visibility change event
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          clearFallback(); // Clear the timeout if the page is hidden (app successfully opened)
+        }
+      });
+    
       if (isIOS()) {
         console.log("Redirecting to iOS intent URL:", iosIntentUrl);
         window.location.href = iosIntentUrl;
-        setTimeout(() => {
+    
+        timeoutId = setTimeout(() => {
           console.log("Fallback to App Store:", appStoreUrl);
-          redirectToUrlIOS(appStoreUrl);
+          redirectToUrlIOS(appStoreUrl); // Replace with your App Store redirection logic
         }, 1500);
       } else if (isAndroid()) {
         console.log("Redirecting to Android intent URL:", androidIntentUrl);
         window.location.href = androidIntentUrl;
-        setTimeout(() => {
-          // Fallback to Play Store if app is not installed
+    
+        timeoutId = setTimeout(() => {
+          console.log("Fallback to Play Store:", playStoreUrl);
           window.location.href = playStoreUrl;
         }, 1500);
       } else {
-        console.log("Redirecting to web fallback URL currently not redirect for testing :", webFallbackUrl);
+        console.log("Redirecting to web fallback URL currently not redirecting for testing:", webFallbackUrl);
         // window.location.href = webFallbackUrl;
       }
     }
+
 
     function redirectToUrlIOS(url) {
       const anchor = document.createElement("a");
