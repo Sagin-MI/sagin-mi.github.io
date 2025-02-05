@@ -82,14 +82,9 @@
         <input type="text" placeholder="And another..." id="input3">
     </div>
 
-    <p class="timestamp">Last updated: <span id="timestamp"></span></p>
+    <p class="timestamp">Last updated: <strong>Feb 5, 2025 - 10:30 AM UTC</strong></p>
 
     <script>
-        function updateTimestamp() {
-            const now = new Date();
-            document.getElementById("timestamp").innerText = now.toLocaleString();
-        }
-
         function adjustHeight() {
             document.body.style.height = window.innerHeight + "px";
         }
@@ -122,7 +117,6 @@
 
         window.addEventListener("resize", adjustHeight);
         adjustHeight();
-        updateTimestamp();
     </script>
 </body>
 </html>
