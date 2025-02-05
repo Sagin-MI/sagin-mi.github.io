@@ -1,141 +1,103 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Language" content="ja">
-  <meta name="google" content="notranslate">  
-  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <title>DeepLink Test</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Flexbox for centering content */
-    #webContent {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Full viewport height */
-      text-align: center; /* Center-align text */
-    }
-    #openWebVersionButton {
-      margin-top: 20px; /* Add space between buttons and text */
-    }
-  </style>
-  <script>
-    // App Store and Play Store URLs and intents
-    const appStoreUrl      = "https://apps.apple.com/app/6446269812";
-    const playStoreUrl     = "https://play.google.com/store/apps/details?id=com.app.mulyankan";
-    const webFallbackUrl   = "https://dev5.yigserver.com/apps/goatus/sys/post-detail/?id=51e6b6b6-4ce6-46c8-a6a0-ff93142f5a90";
-    const androidIntentUrl = `intent://sagin-mi.github.io/#/post-detail?id=1#Intent;scheme=https;package=com.example.flutterdeeplinkMi123;end`;
-    const iosIntentUrl     = "https://sagin-mi.github.io/#/post-detail?id=1";
-    
-    // Device type detection
-    function isIOS() {
-      const ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-      console.log("isIOS:", ios);
-      return ios;
-    }
-
-    function isAndroid() {
-      const android = /Android/i.test(navigator.userAgent);
-      console.log("isAndroid:", android);
-      return android;
-    }
-
-    function isDesktop() {
-      const desktop = !isIOS() && !isAndroid();
-      console.log("isDesktop:", desktop);
-      return desktop;
-    }
-
-    // Handle redirection based on the device type
-    function handleRedirect() {
-      console.log("Handling redirect...");
-    
-      let timeoutId;
-    
-      // Function to clear the timeout
-      function clearFallback() {
-        if (timeoutId) {
-          console.log("App opened successfully. Clearing fallback timeout.");
-          clearTimeout(timeoutId);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>iOS Keyboard Fix</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      }
-    
-      // Listen for the visibility change event
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          clearFallback(); // Clear the timeout if the page is hidden (app successfully opened)
+        html, body {
+            height: 100%;
+            overflow: hidden;
         }
-      });
-    
-      if (isIOS()) {
-        console.log("Redirecting to iOS intent URL:", iosIntentUrl);
-        window.location.href = iosIntentUrl;
-    
-        timeoutId = setTimeout(() => {
-          console.log("Fallback to App Store:", appStoreUrl);
-          redirectToUrlIOS(appStoreUrl); // Replace with your App Store redirection logic
-        }, 1500);
-      } else if (isAndroid()) {
-        console.log("Redirecting to Android intent URL:", androidIntentUrl);
-        window.location.href = androidIntentUrl;
-    
-        timeoutId = setTimeout(() => {
-          console.log("Fallback to Play Store:", playStoreUrl);
-          window.location.href = playStoreUrl;
-        }, 1500);
-      } else {
-        console.log("Redirecting to web fallback URL currently not redirecting for testing:", webFallbackUrl);
-        // window.location.href = webFallbackUrl;
-      }
-    }
-
-
-    function redirectToUrlIOS(url) {
-      const anchor = document.createElement("a");
-      anchor.href = url;
-      anchor.target = "_self"; // Ensures it opens in the current tab
-      anchor.click();
-    }
-
-    function redirectToWebDetailPage() {
-      console.log("Redirecting to Web Version", webFallbackUrl);
-      window.location.href = webFallbackUrl;
-    }
-
-    // Automatically redirect when the page loads
-    window.onload = () => {
-      const button = document.getElementById("openAppButton");
-      if (isDesktop()) {
-        button.style.display = "none"; // Hide button on desktop
-      } else {
-        button.style.display = "block"; // Show button on mobile
-      }
-      console.log("Page loaded. Initiating redirect...");
-      handleRedirect();
-    };
-  </script>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f5f5f5;
+            transition: height 0.3s ease;
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .checkbox-group {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <app-root>
-    <router-outlet></router-outlet>
-    <!-- Add content for web view here -->
-    <div id="webContent">
-      <p>Welcome to the web version of the DeepLink Test page!</p>
-      <!-- Button to explicitly open the app -->
-      <a id="openAppButton" class="btn btn-dark" href="#" onclick="handleRedirect(); return false;" style="display:none;">
-        Open In App
-      </a>
-      <a id="openWebVersionButton" class="btn btn-dark" href="#" onclick="redirectToWebDetailPage(); return false;">
-        Open in Web Detail
-      </a>
+    <div class="container">
+        <h3>iOS Keyboard Fix</h3>
+        
+        <p>Some descriptive text before the input fields.</p>
+
+        <input type="text" placeholder="Enter something...">
+        
+        <p>Choose an option:</p>
+        <select>
+            <option value="">Select an option</option>
+            <option value="one">Option One</option>
+            <option value="two">Option Two</option>
+            <option value="three">Option Three</option>
+        </select>
+
+        <p>Some more text between fields.</p>
+
+        <input type="text" placeholder="Another field...">
+
+        <div class="checkbox-group">
+            <p>Select preferences:</p>
+            <label><input type="checkbox"> Option A</label><br>
+            <label><input type="checkbox"> Option B</label><br>
+            <label><input type="checkbox"> Option C</label>
+        </div>
+
+        <p>Final input field after checkboxes.</p>
+
+        <input type="text" placeholder="And another...">
     </div>
-  </app-root>
-  <script src="polyfills.js" type="module"></script>
-  <script src="main.js" type="module"></script>
+
+    <script>
+        function adjustHeight() {
+            document.body.style.height = window.innerHeight + "px";
+        }
+
+        document.querySelectorAll("input, select").forEach(element => {
+            element.addEventListener("focus", (event) => {
+                setTimeout(() => {
+                    event.target.scrollIntoView({ behavior: "smooth", block: "center" });
+                }, 200);
+            });
+        });
+
+        document.addEventListener("focusout", () => {
+            setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 200);
+        });
+
+        window.addEventListener("resize", adjustHeight);
+        adjustHeight();
+    </script>
 </body>
 </html>
